@@ -70,6 +70,7 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
         super.viewDidLayoutSubviews()
 
         enterYourAddressLabel.preferredMaxLayoutWidth = enterYourAddressLabel.bounds.width
+        yourPollingPlaceLabel.preferredMaxLayoutWidth = yourPollingPlaceLabel.bounds.width
         view.layoutIfNeeded()
     }
 
@@ -107,7 +108,7 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
         enterYourAddressLabel.backgroundColor = theme.electionReminderBackgroundColor()
         enterYourAddressLabel.font = theme.electionReminderEnterAddressLabelFont()
         yourPollingPlaceLabel.font = theme.electionReminderYourPollingPlaceLabelFont()
-        notifButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        notifButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
     }
 
     func addSubviews() {
@@ -145,7 +146,7 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
         yourPollingPlaceLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: mapView, withOffset: 15)
         yourPollingPlaceLabel.autoPinEdgeToSuperviewEdge(.Left)
         yourPollingPlaceLabel.autoPinEdgeToSuperviewEdge(.Right)
-        yourPollingPlaceLabel.autoSetDimension(.Height, toSize: 50)
+        yourPollingPlaceLabel.autoSetDimension(.Height, toSize: 100)
 
         notifButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: yourPollingPlaceLabel, withOffset: 15)
         notifButton.autoPinEdgeToSuperviewEdge(.Left)
@@ -173,7 +174,7 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
                 }
             }
 
-            yourPollingPlaceLabel.text = String(format: "Your Polling Place is: %@\n%@", election!.name, electionAddressString)
+            yourPollingPlaceLabel.text = String(format: "Your Polling Place is\n%@\n%@", election!.name, electionAddressString)
             notifButton.hidden = false
             notifButton.setTitle("Set A Reminder To Vote!", forState: .Normal)
             view.layoutIfNeeded()
