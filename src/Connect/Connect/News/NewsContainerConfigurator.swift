@@ -67,6 +67,12 @@ class NewsContainerConfigurator: ContainerConfigurator {
                 theme: resolver.resolve(Theme.self)!)
             }.inObjectScope(.Container)
 
+        container.register(ElectionReminderControllerProvider.self) { resolver in
+            return ConcreteElectionReminderControllerProvider(
+            theme: resolver.resolve(Theme.self)!,
+            upcomingElectionService: resolver.resolve(UpcomingElectionService.self)!)
+            }.inObjectScope(.Container)
+
         container.register(NewsFeedController.self) { resolver in
             return NewsFeedController(
                 newsFeedService: resolver.resolve(NewsFeedService.self)!,
@@ -76,6 +82,7 @@ class NewsContainerConfigurator: ContainerConfigurator {
                 analyticsService: resolver.resolve(AnalyticsService.self)!,
                 tabBarItemStylist: resolver.resolve(TabBarItemStylist.self)!,
                 mainQueue: resolver.resolve(NSOperationQueue.self, name: "main")!,
+                electionReminderControllerProvider: resolver.resolve(ElectionReminderControllerProvider.self)!,
                 theme: resolver.resolve(Theme.self)!)
             }.inObjectScope(.Container)
 

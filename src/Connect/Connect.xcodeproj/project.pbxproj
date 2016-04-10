@@ -340,7 +340,17 @@
 		65F935071C8536F800E809A4 /* StockNewsFeedCollectionViewCellPresenterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F935061C8536F800E809A4 /* StockNewsFeedCollectionViewCellPresenterSpec.swift */; };
 		65F935091C8541CF00E809A4 /* FakeNewsFeedCollectionViewCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F935081C8541CF00E809A4 /* FakeNewsFeedCollectionViewCellPresenter.swift */; };
 		8233FC0D1B7C28FB00A5E9ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8233FC0C1B7C28FB00A5E9ED /* AppDelegate.swift */; };
+		A2B8393E1CBA5DF400D40F58 /* UpcomingElectionDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B8393D1CBA5DF400D40F58 /* UpcomingElectionDeserializer.swift */; };
+		A2B839401CBA5E2E00D40F58 /* ConcreteUpcomingElectionDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B8393F1CBA5E2E00D40F58 /* ConcreteUpcomingElectionDeserializer.swift */; };
+		A2B839421CBA5F1700D40F58 /* ConcreteUpcomingElectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B839411CBA5F1700D40F58 /* ConcreteUpcomingElectionService.swift */; };
+		A2B839441CBA607400D40F58 /* UpcomingElectionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B839431CBA607400D40F58 /* UpcomingElectionRepository.swift */; };
+		A2B839461CBA607D00D40F58 /* ConcreteUpcomingElectionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B839451CBA607D00D40F58 /* ConcreteUpcomingElectionRepository.swift */; };
+		A2B839481CBA654400D40F58 /* ElectionReminderControllerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B839471CBA654400D40F58 /* ElectionReminderControllerProvider.swift */; };
+		A2B8394A1CBA659000D40F58 /* ConcreteElectionReminderControllerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B839491CBA659000D40F58 /* ConcreteElectionReminderControllerProvider.swift */; };
 		A2D094D11CB9F17200104225 /* ElectionReminderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D094D01CB9F17200104225 /* ElectionReminderController.swift */; };
+		A2D094D31CBA15C200104225 /* ElectionReminderContainerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D094D21CBA15C200104225 /* ElectionReminderContainerConfigurator.swift */; };
+		A2D094D91CBA182E00104225 /* UpcomingElectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D094D81CBA182E00104225 /* UpcomingElectionService.swift */; };
+		A2D094DB1CBA188900104225 /* UpcomingElection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D094DA1CBA188900104225 /* UpcomingElection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -725,7 +735,17 @@
 		8233FC0C1B7C28FB00A5E9ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8233FC151B7C28FB00A5E9ED /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8233FC231B7C28FB00A5E9ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2B8393D1CBA5DF400D40F58 /* UpcomingElectionDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingElectionDeserializer.swift; sourceTree = "<group>"; };
+		A2B8393F1CBA5E2E00D40F58 /* ConcreteUpcomingElectionDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcreteUpcomingElectionDeserializer.swift; sourceTree = "<group>"; };
+		A2B839411CBA5F1700D40F58 /* ConcreteUpcomingElectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcreteUpcomingElectionService.swift; sourceTree = "<group>"; };
+		A2B839431CBA607400D40F58 /* UpcomingElectionRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingElectionRepository.swift; sourceTree = "<group>"; };
+		A2B839451CBA607D00D40F58 /* ConcreteUpcomingElectionRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcreteUpcomingElectionRepository.swift; sourceTree = "<group>"; };
+		A2B839471CBA654400D40F58 /* ElectionReminderControllerProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElectionReminderControllerProvider.swift; sourceTree = "<group>"; };
+		A2B839491CBA659000D40F58 /* ConcreteElectionReminderControllerProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcreteElectionReminderControllerProvider.swift; sourceTree = "<group>"; };
 		A2D094D01CB9F17200104225 /* ElectionReminderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElectionReminderController.swift; sourceTree = "<group>"; };
+		A2D094D21CBA15C200104225 /* ElectionReminderContainerConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElectionReminderContainerConfigurator.swift; sourceTree = "<group>"; };
+		A2D094D81CBA182E00104225 /* UpcomingElectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingElectionService.swift; sourceTree = "<group>"; };
+		A2D094DA1CBA188900104225 /* UpcomingElection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingElection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1694,7 +1714,10 @@
 		A2D094CE1CB9F17200104225 /* Election Reminder */ = {
 			isa = PBXGroup;
 			children = (
+				A2D094D61CBA182100104225 /* DataAccess */,
+				A2D094D71CBA182100104225 /* Domain */,
 				A2D094CF1CB9F17200104225 /* UI */,
+				A2D094D21CBA15C200104225 /* ElectionReminderContainerConfigurator.swift */,
 			);
 			path = "Election Reminder";
 			sourceTree = "<group>";
@@ -1703,8 +1726,31 @@
 			isa = PBXGroup;
 			children = (
 				A2D094D01CB9F17200104225 /* ElectionReminderController.swift */,
+				A2B839471CBA654400D40F58 /* ElectionReminderControllerProvider.swift */,
+				A2B839491CBA659000D40F58 /* ConcreteElectionReminderControllerProvider.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		A2D094D61CBA182100104225 /* DataAccess */ = {
+			isa = PBXGroup;
+			children = (
+				A2B8393D1CBA5DF400D40F58 /* UpcomingElectionDeserializer.swift */,
+				A2B839431CBA607400D40F58 /* UpcomingElectionRepository.swift */,
+				A2D094D81CBA182E00104225 /* UpcomingElectionService.swift */,
+				A2B8393F1CBA5E2E00D40F58 /* ConcreteUpcomingElectionDeserializer.swift */,
+				A2B839451CBA607D00D40F58 /* ConcreteUpcomingElectionRepository.swift */,
+				A2B839411CBA5F1700D40F58 /* ConcreteUpcomingElectionService.swift */,
+			);
+			path = DataAccess;
+			sourceTree = "<group>";
+		};
+		A2D094D71CBA182100104225 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				A2D094DA1CBA188900104225 /* UpcomingElection.swift */,
+			);
+			path = Domain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1766,7 +1812,6 @@
 				TargetAttributes = {
 					8233FC061B7C28FB00A5E9ED = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = TL9762W3KX;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1947,6 +1992,7 @@
 				659885761C59CCA100C661C6 /* ActionAlertDeserializer.swift in Sources */,
 				65629A8A1C9E1A1F0007119A /* ActionAlertLoadingMonitor.swift in Sources */,
 				65B0235B1C59C6490082E211 /* ActionAlertRepository.swift in Sources */,
+				A2B839481CBA654400D40F58 /* ElectionReminderControllerProvider.swift in Sources */,
 				6595419A1C9E0C9F00D9FACC /* ActionAlertsController.swift in Sources */,
 				6513E4781C59B29E00CA51BD /* ActionAlertService.swift in Sources */,
 				65629A881C9E176F0007119A /* ActionAlertWebViewProvider.swift in Sources */,
@@ -1994,6 +2040,7 @@
 				655B6AD01C9B45C300153AD9 /* EditAddressSearchBarController.swift in Sources */,
 				653D0ED51C4C2938004CB8A0 /* Event.swift in Sources */,
 				65DAF32F1C9861D7000E604F /* EventController.swift in Sources */,
+				A2B8394A1CBA659000D40F58 /* ConcreteElectionReminderControllerProvider.swift in Sources */,
 				65DAF3281C9861D7000E604F /* EventControllerProvider.swift in Sources */,
 				653D0ED01C4C292D004CB8A0 /* EventDeserializer.swift in Sources */,
 				65DAF3291C9861D7000E604F /* EventListTableViewCell.swift in Sources */,
@@ -2010,6 +2057,7 @@
 				65DAF32B1C9861D7000E604F /* EventSectionHeaderPresenter.swift in Sources */,
 				655B6AD21C9B45C900153AD9 /* EventsErrorController.swift in Sources */,
 				65DAF3621C986A4F000E604F /* EventsNearAddressFilterController.swift in Sources */,
+				A2B839421CBA5F1700D40F58 /* ConcreteUpcomingElectionService.swift in Sources */,
 				65DAF3611C986A4F000E604F /* EventsNearAddressSearchBarController.swift in Sources */,
 				6513FC2A1C96206600EDB635 /* EventsNearAddressUseCase.swift in Sources */,
 				65363C021C9A3A490004A3A2 /* EventsNoResultsController.swift in Sources */,
@@ -2026,6 +2074,7 @@
 				653D0FA01C4C35C0004CB8A0 /* InterstitialController.swift in Sources */,
 				653D0F7C1C4C2F68004CB8A0 /* JSONClient.swift in Sources */,
 				6549DC2B1C8B576D0057D74C /* LocationManagerProxy.swift in Sources */,
+				A2B8393E1CBA5DF400D40F58 /* UpcomingElectionDeserializer.swift in Sources */,
 				6549DC271C8B4F4B0057D74C /* LocationPermissionUseCase.swift in Sources */,
 				65CA5E871B86CAAF0001D870 /* main.swift in Sources */,
 				65D3C5401C5C507800317466 /* MarkdownConverter.swift in Sources */,
@@ -2034,6 +2083,7 @@
 				65D43F041C9770EA00185AB5 /* NBUIKitMainThreadGuard.swift in Sources */,
 				65DAF3601C986A4F000E604F /* NearbyEventsFilterController.swift in Sources */,
 				655B6ACF1C9B45C300153AD9 /* NearbyEventsLoadingSearchBarController.swift in Sources */,
+				A2B839461CBA607D00D40F58 /* ConcreteUpcomingElectionRepository.swift in Sources */,
 				65DAF35F1C986A4F000E604F /* NearbyEventsSearchBarController.swift in Sources */,
 				651529D31C9214C600714E81 /* NearbyEventsUseCase.swift in Sources */,
 				653D0EFF1C4C2B84004CB8A0 /* NewsArticle.swift in Sources */,
@@ -2041,12 +2091,15 @@
 				653D0F151C4C2B8B004CB8A0 /* NewsArticleController.swift in Sources */,
 				653D0F161C4C2B8B004CB8A0 /* NewsArticleControllerProvider.swift in Sources */,
 				653D0FB61C4C536F004CB8A0 /* NewsArticleDeserializer.swift in Sources */,
+				A2D094D31CBA15C200104225 /* ElectionReminderContainerConfigurator.swift in Sources */,
+				A2B839441CBA607400D40F58 /* UpcomingElectionRepository.swift in Sources */,
 				653D0EF81C4C2B7D004CB8A0 /* NewsArticleRepository.swift in Sources */,
 				653D0EF91C4C2B7D004CB8A0 /* NewsArticleService.swift in Sources */,
 				65979AAA1C4C767D00A312A9 /* NewsContainerConfigurator.swift in Sources */,
 				653173091C85E807004E472A /* NewsFeedArticleCellProvider.swift in Sources */,
 				65C1477C1C84E5A400D9B78A /* NewsFeedCellProvider.swift in Sources */,
 				653D0F1A1C4C2B8B004CB8A0 /* NewsFeedController.swift in Sources */,
+				A2D094DB1CBA188900104225 /* UpcomingElection.swift in Sources */,
 				653D0F001C4C2B84004CB8A0 /* NewsFeedItem.swift in Sources */,
 				653D0EFA1C4C2B7D004CB8A0 /* NewsFeedService.swift in Sources */,
 				6531730F1C86AEF0004E472A /* NewsFeedVideoCellProvider.swift in Sources */,
@@ -2058,6 +2111,7 @@
 				652AE5E41C46EE9E00EE7B70 /* OpenNewsArticleNotificationHandler.swift in Sources */,
 				65DB15EE1C89267300F470D5 /* OpenVideoNotificationHandler.swift in Sources */,
 				652AE5F41C475D3700EE7B70 /* ParseAnalyticsNotificationHandler.swift in Sources */,
+				A2D094D91CBA182E00104225 /* UpcomingElectionService.swift in Sources */,
 				654948E81BFB807600C1ECDB /* ParsePushNotificationRegistrar.swift in Sources */,
 				653D0F861C4C2F68004CB8A0 /* PFAnalyticsProxy.swift in Sources */,
 				653D0F511C4C2DE2004CB8A0 /* PrivacyPolicyController.swift in Sources */,
@@ -2084,6 +2138,7 @@
 				65C8CCA11CA748D7004D2373 /* VersionRepository.swift in Sources */,
 				653D0F011C4C2B84004CB8A0 /* Video.swift in Sources */,
 				A2D094D11CB9F17200104225 /* ElectionReminderController.swift in Sources */,
+				A2B839401CBA5E2E00D40F58 /* ConcreteUpcomingElectionDeserializer.swift in Sources */,
 				65DB15E51C87E1BA00F470D5 /* VideoCollectionViewCell.swift in Sources */,
 				653D0F1E1C4C2B8B004CB8A0 /* VideoController.swift in Sources */,
 				653D0FB71C4C536F004CB8A0 /* VideoDeserializer.swift in Sources */,
@@ -2473,7 +2528,7 @@
 				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CONNECT_BASE_URL = "https://sanders-connect-staging.herokuapp.com/";
+				CONNECT_BASE_URL = "http://localhost:5100";
 				CURRENT_PROJECT_VERSION = 231;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

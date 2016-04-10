@@ -9,6 +9,7 @@ class NewsFeedController: UIViewController {
     private let analyticsService: AnalyticsService
     private let tabBarItemStylist: TabBarItemStylist
     private let mainQueue: NSOperationQueue
+    private var electionReminderControllerProvider: ElectionReminderControllerProvider
     private var theme: Theme
 
     private var errorLoadingNews = false
@@ -26,6 +27,7 @@ class NewsFeedController: UIViewController {
          analyticsService: AnalyticsService,
          tabBarItemStylist: TabBarItemStylist,
          mainQueue: NSOperationQueue,
+         electionReminderControllerProvider: ElectionReminderControllerProvider,
          theme: Theme) {
             self.newsFeedService = newsFeedService
             self.newsFeedItemControllerProvider = newsFeedItemControllerProvider
@@ -34,6 +36,7 @@ class NewsFeedController: UIViewController {
             self.analyticsService = analyticsService
             self.tabBarItemStylist = tabBarItemStylist
             self.mainQueue = mainQueue
+            self.electionReminderControllerProvider = electionReminderControllerProvider
             self.theme = theme
 
             self.newsFeedItems = []
@@ -196,7 +199,7 @@ extension NewsFeedController {
     }
 
     func didTapVoteButton() {
-        let electionReminderController = ElectionReminderController(theme: self.theme)
+        let electionReminderController = self.electionReminderControllerProvider.provideElectionReminderController()
         let navigationController = UINavigationController(rootViewController: electionReminderController)
         self.presentViewController(navigationController, animated: true, completion: nil)
     }

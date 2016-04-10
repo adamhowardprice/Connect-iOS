@@ -3,6 +3,7 @@ import CoreLocation
 
 protocol URLProvider {
     func newsFeedURL() -> NSURL
+    func electionURL(address: String) -> NSURL
     func eventsURL() -> NSURL
     func privacyPolicyURL() -> NSURL
     func hostEventFormURL() -> NSURL

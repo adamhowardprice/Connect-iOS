@@ -14,6 +14,12 @@ class ConcreteURLProvider: URLProvider {
         return NSURL(string: "/articles_en_v1/berniesanders_com/_search", relativeToURL: sharknadoBaseURL)!
     }
 
+    func electionURL(address: String) -> NSURL {
+        let escapedAddress = address.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+        let urlString = String(format: "/api/election/%@", escapedAddress!)
+        return NSURL(string: urlString, relativeToURL: connectBaseURL)!
+    }
+
     func eventsURL() -> NSURL {
         return NSURL(string: "/events_en_v1/berniesanders_com/_search", relativeToURL: sharknadoBaseURL)!
     }

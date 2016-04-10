@@ -3,14 +3,16 @@ import UIKit
 class ElectionReminderController : UIViewController, UITextFieldDelegate {
 
     let theme: Theme
+    let upcomingElectionService: UpcomingElectionService
 
     private let topSectionSpacer = UIView.newAutoLayoutView()
     private let bottomSectionSpacer = UIView.newAutoLayoutView()
     private let enterYourAddressLabel: UILabel = UILabel.newAutoLayoutView()
     private let enterYourAddressField: UITextField = UITextField.newAutoLayoutView()
 
-    init(theme: Theme) {
+    init(theme: Theme, upcomingElectionService: UpcomingElectionService) {
         self.theme = theme
+        self.upcomingElectionService = upcomingElectionService
 
         super.init(nibName: nil, bundle: nil)
 
@@ -112,7 +114,13 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate {
     // MARK: UITextFieldDelegate
 
     func textFieldDidEndEditing(textField: UITextField) {
-        print("Finish")
+        if (textField.text?.characters.count == 0) {
+            return
+        }
+
+        upcomingElectionService.fetchUpcomingElection(textField.text!).then { election in
+            print(election.state)
+        }
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {

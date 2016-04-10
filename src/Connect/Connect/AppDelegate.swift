@@ -56,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func configureAppContainer(application: UIApplication) -> Container {
         let container = ConnectContainerProvider.container(application)
         ActionsContainerConfigurator.configureContainer(container)
+        ElectionReminderContainerConfigurator.configureContainer(container)
         EventsContainerConfigurator.configureContainer(container)
         GlobalUIContainerConfigurator.configureContainer(container)
         InfrastructureContainerConfigurator.configureContainer(container)
