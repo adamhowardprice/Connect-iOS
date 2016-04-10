@@ -83,16 +83,22 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
         yourPollingPlaceLabel.numberOfLines = 0
         yourPollingPlaceLabel.textAlignment = .Center
 
-        notifButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        notifButton.configureForAutoLayout()
+        notifButton.backgroundColor = theme.fullWidthButtonBackgroundColor()
         notifButton.addTarget(self, action: #selector(ElectionReminderController.didTapNotifButton), forControlEvents: .TouchUpInside)
+        notifButton.hidden = true
+
+        mapView.delegate = self
+        mapView.hidden = true
 
         enterYourAddressField.placeholder = NSLocalizedString("ElectionReminder_enterAddressLabelPlaceholder", comment: "")
         enterYourAddressField.textAlignment = .Center
         enterYourAddressField.borderStyle = .Bezel
         enterYourAddressField.delegate = self
-
-        mapView.delegate = self
-        mapView.hidden = true
+        if let cachedAddress = NSUserDefaults.standardUserDefaults().objectForKey("UserAddress") as? String {
+            enterYourAddressField.text = cachedAddress
+            didFinishEditingAddressField(cachedAddress)
+        }
     }
 
     func applyTheme() {
@@ -101,6 +107,7 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
         enterYourAddressLabel.backgroundColor = theme.electionReminderBackgroundColor()
         enterYourAddressLabel.font = theme.electionReminderEnterAddressLabelFont()
         yourPollingPlaceLabel.font = theme.electionReminderYourPollingPlaceLabelFont()
+        notifButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
     }
 
     func addSubviews() {
@@ -173,6 +180,16 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
         }
     }
 
+    private func didFinishEditingAddressField(addressText: String) {
+        userAddress = addressText
+        NSUserDefaults.standardUserDefaults().setObject(userAddress, forKey: "UserAddress")
+        NSUserDefaults.standardUserDefaults().synchronize()
+
+        upcomingElectionService.fetchUpcomingElection(userAddress).then { upcomingElection in
+            self.election = upcomingElection
+        }
+    }
+
     // MARK: UITextFieldDelegate
 
     func textFieldDidEndEditing(textField: UITextField) {
@@ -180,11 +197,7 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
             return
         }
 
-        userAddress = textField.text!
-
-        upcomingElectionService.fetchUpcomingElection(userAddress).then { upcomingElection in
-            self.election = upcomingElection
-        }
+        didFinishEditingAddressField(textField.text!)
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
