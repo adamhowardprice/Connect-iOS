@@ -1,6 +1,7 @@
 import UIKit
+import MapKit
 
-class ElectionReminderController : UIViewController, UITextFieldDelegate {
+class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapViewDelegate {
 
     let theme: Theme
     let upcomingElectionService: UpcomingElectionService
@@ -9,10 +10,19 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate {
     private let bottomSectionSpacer = UIView.newAutoLayoutView()
     private let enterYourAddressLabel: UILabel = UILabel.newAutoLayoutView()
     private let enterYourAddressField: UITextField = UITextField.newAutoLayoutView()
+    private let mapView = MKMapView()
+
+    private var election : UpcomingElection? {
+        didSet {
+            print(election?.state)
+            mapView.hidden = (election == nil)
+        }
+    }
 
     init(theme: Theme, upcomingElectionService: UpcomingElectionService) {
         self.theme = theme
         self.upcomingElectionService = upcomingElectionService
+        self.election = nil
 
         super.init(nibName: nil, bundle: nil)
 
@@ -37,7 +47,7 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate {
             action: #selector(ElectionReminderController.didTapCloseButton))
         navigationItem.leftBarButtonItem = closeBarButtonItem
 
-        setupLabels()
+        setupViews()
         applyTheme()
         addSubviews()
         setupConstraints()
@@ -61,7 +71,7 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate {
 
     // MARK: Private
 
-    func setupLabels() {
+    func setupViews() {
         enterYourAddressLabel.text = NSLocalizedString("ElectionReminder_enterAddressLabelText", comment: "")
         enterYourAddressLabel.numberOfLines = 3
         enterYourAddressLabel.textAlignment = .Center
@@ -70,6 +80,9 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate {
         enterYourAddressField.textAlignment = .Center
         enterYourAddressField.borderStyle = .Bezel
         enterYourAddressField.delegate = self
+
+        mapView.delegate = self
+        mapView.hidden = true
     }
 
     func applyTheme() {
@@ -85,6 +98,7 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate {
         view.addSubview(bottomSectionSpacer)
         view.addSubview(enterYourAddressLabel)
         view.addSubview(enterYourAddressField)
+        view.addSubview(mapView)
     }
 
     func setupConstraints() {
@@ -105,7 +119,12 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate {
         enterYourAddressField.autoSetDimension(.Width, toSize: view.bounds.width - 80)
         enterYourAddressField.autoSetDimension(.Height, toSize: 50)
 
-        bottomSectionSpacer.autoPinEdge(.Top, toEdge: .Bottom, ofView: enterYourAddressField, withOffset: 15)
+        mapView.autoPinEdge(.Top, toEdge: .Bottom, ofView: enterYourAddressField, withOffset: 15)
+        mapView.autoPinEdgeToSuperviewEdge(.Left, withInset: 20, relation: .Equal)
+        mapView.autoPinEdgeToSuperviewEdge(.Right, withInset: 20, relation: .Equal)
+        mapView.autoSetDimension(.Height, toSize: 200)
+
+        bottomSectionSpacer.autoPinEdge(.Top, toEdge: .Bottom, ofView: mapView, withOffset: 15)
         bottomSectionSpacer.autoPinEdgeToSuperviewEdge(.Left)
         bottomSectionSpacer.autoPinEdgeToSuperviewEdge(.Right)
         bottomSectionSpacer.autoSetDimension(.Height, toSize: view.bounds.height / 10)
@@ -118,8 +137,8 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate {
             return
         }
 
-        upcomingElectionService.fetchUpcomingElection(textField.text!).then { election in
-            print(election.state)
+        upcomingElectionService.fetchUpcomingElection(textField.text!).then { upcomingElection in
+            self.election = upcomingElection
         }
     }
 
