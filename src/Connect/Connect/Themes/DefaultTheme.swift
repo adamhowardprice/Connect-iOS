@@ -82,6 +82,10 @@ class DefaultTheme: Theme {
     func settingsAnalyticsFont() -> UIFont { return UIFont.systemFontOfSize(13) }
     func settingsSwitchColor() -> UIColor { return scienceBlueColor }
 
+    // MARK: Election Reminder
+
+    func electionReminderBackgroundColor() -> UIColor { return defaultBackgroundColor() }
+
     // MARK: Events
 
     func eventsListNameFont() -> UIFont { return h3HeaderFont() }

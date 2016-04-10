@@ -73,6 +73,10 @@ protocol Theme {
     func videoDescriptionFont() -> UIFont
     func videoDescriptionColor() -> UIColor
 
+    // MARK: Election Reminder screen
+
+    func electionReminderBackgroundColor() -> UIColor
+
     // MARK: Events screen
 
     func eventsListNameFont() -> UIFont

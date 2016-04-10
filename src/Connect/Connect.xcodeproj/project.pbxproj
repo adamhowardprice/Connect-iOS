@@ -340,6 +340,7 @@
 		65F935071C8536F800E809A4 /* StockNewsFeedCollectionViewCellPresenterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F935061C8536F800E809A4 /* StockNewsFeedCollectionViewCellPresenterSpec.swift */; };
 		65F935091C8541CF00E809A4 /* FakeNewsFeedCollectionViewCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F935081C8541CF00E809A4 /* FakeNewsFeedCollectionViewCellPresenter.swift */; };
 		8233FC0D1B7C28FB00A5E9ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8233FC0C1B7C28FB00A5E9ED /* AppDelegate.swift */; };
+		A2D094D11CB9F17200104225 /* ElectionReminderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D094D01CB9F17200104225 /* ElectionReminderController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -724,6 +725,7 @@
 		8233FC0C1B7C28FB00A5E9ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8233FC151B7C28FB00A5E9ED /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8233FC231B7C28FB00A5E9ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2D094D01CB9F17200104225 /* ElectionReminderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElectionReminderController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1625,6 +1627,7 @@
 			isa = PBXGroup;
 			children = (
 				653D0F3C1C4C2CC8004CB8A0 /* Actions */,
+				A2D094CE1CB9F17200104225 /* Election Reminder */,
 				653D0E7F1C4C2735004CB8A0 /* Events */,
 				65A5C0F41BA27C5400D46500 /* Externals */,
 				653D0F8E1C4C35C0004CB8A0 /* GlobalUI */,
@@ -1686,6 +1689,22 @@
 				8233FC231B7C28FB00A5E9ED /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A2D094CE1CB9F17200104225 /* Election Reminder */ = {
+			isa = PBXGroup;
+			children = (
+				A2D094CF1CB9F17200104225 /* UI */,
+			);
+			path = "Election Reminder";
+			sourceTree = "<group>";
+		};
+		A2D094CF1CB9F17200104225 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A2D094D01CB9F17200104225 /* ElectionReminderController.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2064,6 +2083,7 @@
 				65C8CCAB1CA750F3004D2373 /* VersionDeserializer.swift in Sources */,
 				65C8CCA11CA748D7004D2373 /* VersionRepository.swift in Sources */,
 				653D0F011C4C2B84004CB8A0 /* Video.swift in Sources */,
+				A2D094D11CB9F17200104225 /* ElectionReminderController.swift in Sources */,
 				65DB15E51C87E1BA00F470D5 /* VideoCollectionViewCell.swift in Sources */,
 				653D0F1E1C4C2B8B004CB8A0 /* VideoController.swift in Sources */,
 				653D0FB71C4C536F004CB8A0 /* VideoDeserializer.swift in Sources */,

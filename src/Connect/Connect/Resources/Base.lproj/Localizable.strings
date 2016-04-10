@@ -18,6 +18,10 @@
 "Organize_tabBarTitle" = "Organize";
 "Organize_navigationTitle" = "Organize";
 
+// Election Reminder
+
+"ElectionReminder_title" = "Election Reminder";
+
 // Events
 
 "Events_tabBarTitle" = "Events";

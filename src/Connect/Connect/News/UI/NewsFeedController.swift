@@ -69,6 +69,11 @@ class NewsFeedController: UIViewController {
         infoBarButtonItem.tintColor = theme.newsFeedInfoButtonTintColor()
         navigationItem.rightBarButtonItem = infoBarButtonItem
 
+        let voteButtonImage = UIImage(named: "checkmarkButton")!
+        let voteBarButtonItem = UIBarButtonItem(image: voteButtonImage, style: .Plain, target: self, action: #selector(NewsFeedController.didTapVoteButton))
+        voteBarButtonItem.tintColor = theme.newsFeedInfoButtonTintColor()
+        navigationItem.leftBarButtonItem = voteBarButtonItem
+
         refreshControl.addTarget(self, action:#selector(NewsFeedController.refresh), forControlEvents:.ValueChanged)
         collectionView.addSubview(refreshControl)
         collectionView.sendSubviewToBack(refreshControl)
@@ -188,5 +193,11 @@ extension NewsFeedController {
     func didTapInfoButton() {
         navigationController?.pushViewController(moreController, animated: true)
         analyticsService.trackCustomEventWithName("User tapped info button on news feed", customAttributes: nil)
+    }
+
+    func didTapVoteButton() {
+        let electionReminderController = ElectionReminderController(theme: self.theme)
+        let navigationController = UINavigationController(rootViewController: electionReminderController)
+        self.presentViewController(navigationController, animated: true, completion: nil)
     }
 }
