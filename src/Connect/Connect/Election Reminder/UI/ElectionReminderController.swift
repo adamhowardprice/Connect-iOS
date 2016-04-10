@@ -11,11 +11,13 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
     private let enterYourAddressLabel: UILabel = UILabel.newAutoLayoutView()
     private let enterYourAddressField: UITextField = UITextField.newAutoLayoutView()
     private let mapView = MKMapView()
+    private let geocoder = CLGeocoder()
+    private var userAddress : String
 
     private var election : UpcomingElection? {
         didSet {
             print(election?.state)
-            mapView.hidden = (election == nil)
+            updateMap()
         }
     }
 
@@ -23,6 +25,7 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
         self.theme = theme
         self.upcomingElectionService = upcomingElectionService
         self.election = nil
+        self.userAddress = ""
 
         super.init(nibName: nil, bundle: nil)
 
@@ -130,6 +133,27 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
         bottomSectionSpacer.autoSetDimension(.Height, toSize: view.bounds.height / 10)
     }
 
+    private func updateMap() {
+
+        mapView.hidden = (election == nil)
+
+        let electionAddressString = "\(election?.address) \(election?.city) \(election?.state)"
+        geocoder.geocodeAddressString(electionAddressString) { elecPlacemarks, elecError in
+            if (elecError != nil) {
+                return
+            }
+
+            if let place = (elecPlacemarks?.first)! as CLPlacemark? {
+
+                let addressPlacemark = MKPlacemark(coordinate: place.location!.coordinate, addressDictionary: nil)
+
+                self.mapView.addAnnotation(addressPlacemark)
+                let region = MKCoordinateRegionMake(place.location!.coordinate, MKCoordinateSpanMake(0.005, 0.005))
+                self.mapView.setRegion(region, animated: true)
+            }
+        }
+    }
+
     // MARK: UITextFieldDelegate
 
     func textFieldDidEndEditing(textField: UITextField) {
@@ -137,7 +161,9 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
             return
         }
 
-        upcomingElectionService.fetchUpcomingElection(textField.text!).then { upcomingElection in
+        userAddress = textField.text!
+
+        upcomingElectionService.fetchUpcomingElection(userAddress).then { upcomingElection in
             self.election = upcomingElection
         }
     }
@@ -145,6 +171,34 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
+    }
+
+    // MARK: MKMapViewDelegate
+
+    func mapViewDidFinishLoadingMap(mapView: MKMapView) {
+
+    }
+
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            //return nil so map view draws "blue dot" for standard user location
+            return nil
+        }
+
+        let reuseId = "pin"
+
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.animatesDrop = true
+            pinView!.pinColor = .Purple
+        }
+        else {
+            pinView!.annotation = annotation
+        }
+        
+        return pinView
     }
 }
 
