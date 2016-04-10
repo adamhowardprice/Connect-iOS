@@ -50,6 +50,7 @@ class DefaultTheme: Theme {
     func newsFeedVideoOverlayBackgroundColor() -> UIColor { return UIColor(red: 0, green: 0, blue: 0, alpha: 0.7) }
     func newsFeedCellBorderColor() -> UIColor { return altoColor }
     func newsFeedInfoButtonTintColor() -> UIColor { return boulderColor }
+    func newsFeedInfoButtonActiveTintColor() -> UIColor { return UIColor(red: 0, green: 1, blue: 1, alpha: 0.7) }
 
     // MARK: News Article screen
 

@@ -10,6 +10,7 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
     private let enterYourAddressLabel: UILabel = UILabel.newAutoLayoutView()
     private let enterYourAddressField: UITextField = UITextField.newAutoLayoutView()
     private let yourPollingPlaceLabel: UILabel = UILabel.newAutoLayoutView()
+    private let notifButton: UIButton = UIButton.newAutoLayoutView()
     private let mapView = MKMapView()
     private let geocoder = CLGeocoder()
     private var userAddress : String
@@ -82,6 +83,9 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
         yourPollingPlaceLabel.numberOfLines = 0
         yourPollingPlaceLabel.textAlignment = .Center
 
+        notifButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        notifButton.addTarget(self, action: #selector(ElectionReminderController.didTapNotifButton), forControlEvents: .TouchUpInside)
+
         enterYourAddressField.placeholder = NSLocalizedString("ElectionReminder_enterAddressLabelPlaceholder", comment: "")
         enterYourAddressField.textAlignment = .Center
         enterYourAddressField.borderStyle = .Bezel
@@ -104,6 +108,7 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
         view.addSubview(enterYourAddressLabel)
         view.addSubview(enterYourAddressField)
         view.addSubview(yourPollingPlaceLabel)
+        view.addSubview(notifButton)
         view.addSubview(mapView)
     }
 
@@ -134,6 +139,11 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
         yourPollingPlaceLabel.autoPinEdgeToSuperviewEdge(.Left)
         yourPollingPlaceLabel.autoPinEdgeToSuperviewEdge(.Right)
         yourPollingPlaceLabel.autoSetDimension(.Height, toSize: 50)
+
+        notifButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: yourPollingPlaceLabel, withOffset: 15)
+        notifButton.autoPinEdgeToSuperviewEdge(.Left)
+        notifButton.autoPinEdgeToSuperviewEdge(.Right)
+        notifButton.autoSetDimension(.Height, toSize: 60)
     }
 
     private func updateMap() {
@@ -157,6 +167,8 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
             }
 
             yourPollingPlaceLabel.text = String(format: "Your Polling Place is: %@\n%@", election!.name, electionAddressString)
+            notifButton.hidden = false
+            notifButton.setTitle("Set A Reminder To Vote!", forState: .Normal)
             view.layoutIfNeeded()
         }
     }
@@ -213,6 +225,12 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
 
 extension ElectionReminderController {
     func didTapCloseButton() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    func didTapNotifButton() {
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "NotifSet")
+        NSUserDefaults.standardUserDefaults().synchronize()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

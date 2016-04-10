@@ -117,6 +117,12 @@ class NewsFeedController: UIViewController {
             navigationController.followScrollView(collectionView, delay: 50.0)
         }
 
+        if (NSUserDefaults.standardUserDefaults().boolForKey("NotifSet")) {
+            navigationItem.leftBarButtonItem?.tintColor = theme.newsFeedInfoButtonActiveTintColor()
+        } else {
+            navigationItem.leftBarButtonItem?.tintColor = theme.newsFeedInfoButtonTintColor()
+        }
+
         loadNewsFeed()
     }
 

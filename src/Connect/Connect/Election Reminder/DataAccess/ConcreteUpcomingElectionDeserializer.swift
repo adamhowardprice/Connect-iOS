@@ -1,6 +1,14 @@
 import Foundation
 
 class ConcreteUpcomingElectionDeserializer: UpcomingElectionDeserializer {
+    private static let formatter: NSDateFormatter = {
+        let formatter = NSDateFormatter()
+        formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        formatter.timeZone = NSTimeZone.localTimeZone()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss+ZZ:ZZ"
+        return formatter
+    }()
+
     func deserializeUpcomingElection(jsonDictionary: NSDictionary) -> UpcomingElection {
         print(jsonDictionary)
 
@@ -22,7 +30,8 @@ class ConcreteUpcomingElectionDeserializer: UpcomingElectionDeserializer {
             precinctCode: precinctCode!,
             isPrimary: isPrimary!,
             name: name!,
-            startTime: NSDate(),
-            endTime: NSDate())
+            startTime: NSDate(), // TODO: Use date formatter correctly
+            endTime: NSDate()
+        )
     }
 }

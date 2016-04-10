@@ -54,6 +54,7 @@ protocol Theme {
     func newsFeedVideoOverlayBackgroundColor() -> UIColor
     func newsFeedCellBorderColor() -> UIColor
     func newsFeedInfoButtonTintColor() -> UIColor
+    func newsFeedInfoButtonActiveTintColor() -> UIColor
 
     // MARK: News Article detail screen
 
