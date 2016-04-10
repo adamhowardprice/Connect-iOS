@@ -21,6 +21,9 @@
 // Election Reminder
 
 "ElectionReminder_title" = "Election Reminder";
+"ElectionReminder_navBarCloseButtonTitle" = "Close";
+"ElectionReminder_enterAddressLabelText" = "Enter your address\nto find your polling location\nand set a reminder for election day!";
+"ElectionReminder_enterAddressLabelPlaceholder" = "123 Main Street, Burlington VT";
 
 // Events
 

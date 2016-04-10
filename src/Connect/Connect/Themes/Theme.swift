@@ -76,6 +76,7 @@ protocol Theme {
     // MARK: Election Reminder screen
 
     func electionReminderBackgroundColor() -> UIColor
+    func electionReminderEnterAddressLabelFont() -> UIFont
 
     // MARK: Events screen
 
