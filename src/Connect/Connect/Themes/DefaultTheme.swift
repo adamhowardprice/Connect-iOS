@@ -86,6 +86,7 @@ class DefaultTheme: Theme {
 
     func electionReminderBackgroundColor() -> UIColor { return defaultBackgroundColor() }
     func electionReminderEnterAddressLabelFont() -> UIFont { return h1HeaderFont() }
+    func electionReminderYourPollingPlaceLabelFont() -> UIFont { return h2HeaderFont() }
 
     // MARK: Events
 

@@ -7,6 +7,7 @@ class UpcomingElection {
     let address: String
     let zip: String
     let precinctCode: String
+    let name: String
     let isPrimary: Bool
     let startTime: NSDate
     let endTime: NSDate
@@ -18,6 +19,7 @@ class UpcomingElection {
          zip: String,
          precinctCode: String,
          isPrimary: Bool,
+         name: String,
          startTime: NSDate,
          endTime: NSDate) {
 
@@ -27,6 +29,7 @@ class UpcomingElection {
         self.address = address
         self.zip = zip
         self.precinctCode = precinctCode
+        self.name = name
         self.isPrimary = isPrimary
         self.startTime = startTime
         self.endTime = endTime

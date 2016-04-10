@@ -7,9 +7,9 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
     let upcomingElectionService: UpcomingElectionService
 
     private let topSectionSpacer = UIView.newAutoLayoutView()
-    private let bottomSectionSpacer = UIView.newAutoLayoutView()
     private let enterYourAddressLabel: UILabel = UILabel.newAutoLayoutView()
     private let enterYourAddressField: UITextField = UITextField.newAutoLayoutView()
+    private let yourPollingPlaceLabel: UILabel = UILabel.newAutoLayoutView()
     private let mapView = MKMapView()
     private let geocoder = CLGeocoder()
     private var userAddress : String
@@ -79,6 +79,9 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
         enterYourAddressLabel.numberOfLines = 3
         enterYourAddressLabel.textAlignment = .Center
 
+        yourPollingPlaceLabel.numberOfLines = 0
+        yourPollingPlaceLabel.textAlignment = .Center
+
         enterYourAddressField.placeholder = NSLocalizedString("ElectionReminder_enterAddressLabelPlaceholder", comment: "")
         enterYourAddressField.textAlignment = .Center
         enterYourAddressField.borderStyle = .Bezel
@@ -91,16 +94,16 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
     func applyTheme() {
         view.backgroundColor = theme.electionReminderBackgroundColor()
         topSectionSpacer.backgroundColor = theme.electionReminderBackgroundColor()
-        bottomSectionSpacer.backgroundColor = theme.electionReminderBackgroundColor()
         enterYourAddressLabel.backgroundColor = theme.electionReminderBackgroundColor()
         enterYourAddressLabel.font = theme.electionReminderEnterAddressLabelFont()
+        yourPollingPlaceLabel.font = theme.electionReminderYourPollingPlaceLabelFont()
     }
 
     func addSubviews() {
         view.addSubview(topSectionSpacer)
-        view.addSubview(bottomSectionSpacer)
         view.addSubview(enterYourAddressLabel)
         view.addSubview(enterYourAddressField)
+        view.addSubview(yourPollingPlaceLabel)
         view.addSubview(mapView)
     }
 
@@ -127,30 +130,34 @@ class ElectionReminderController : UIViewController, UITextFieldDelegate, MKMapV
         mapView.autoPinEdgeToSuperviewEdge(.Right, withInset: 20, relation: .Equal)
         mapView.autoSetDimension(.Height, toSize: 200)
 
-        bottomSectionSpacer.autoPinEdge(.Top, toEdge: .Bottom, ofView: mapView, withOffset: 15)
-        bottomSectionSpacer.autoPinEdgeToSuperviewEdge(.Left)
-        bottomSectionSpacer.autoPinEdgeToSuperviewEdge(.Right)
-        bottomSectionSpacer.autoSetDimension(.Height, toSize: view.bounds.height / 10)
+        yourPollingPlaceLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: mapView, withOffset: 15)
+        yourPollingPlaceLabel.autoPinEdgeToSuperviewEdge(.Left)
+        yourPollingPlaceLabel.autoPinEdgeToSuperviewEdge(.Right)
+        yourPollingPlaceLabel.autoSetDimension(.Height, toSize: 50)
     }
 
     private func updateMap() {
 
         mapView.hidden = (election == nil)
 
-        let electionAddressString = "\(election?.address) \(election?.city) \(election?.state)"
-        geocoder.geocodeAddressString(electionAddressString) { elecPlacemarks, elecError in
-            if (elecError != nil) {
-                return
+        if let electionAddressString: String = String(format: "%@ %@ %@", election!.address, election!.city, election!.state) {
+            geocoder.geocodeAddressString(electionAddressString) { elecPlacemarks, elecError in
+                if (elecError != nil) {
+                    return
+                }
+
+                if let place = (elecPlacemarks?.first)! as CLPlacemark? {
+
+                    let addressPlacemark = MKPlacemark(coordinate: place.location!.coordinate, addressDictionary: nil)
+
+                    self.mapView.addAnnotation(addressPlacemark)
+                    let region = MKCoordinateRegionMake(place.location!.coordinate, MKCoordinateSpanMake(0.005, 0.005))
+                    self.mapView.setRegion(region, animated: true)
+                }
             }
 
-            if let place = (elecPlacemarks?.first)! as CLPlacemark? {
-
-                let addressPlacemark = MKPlacemark(coordinate: place.location!.coordinate, addressDictionary: nil)
-
-                self.mapView.addAnnotation(addressPlacemark)
-                let region = MKCoordinateRegionMake(place.location!.coordinate, MKCoordinateSpanMake(0.005, 0.005))
-                self.mapView.setRegion(region, animated: true)
-            }
+            yourPollingPlaceLabel.text = String(format: "Your Polling Place is: %@\n%@", election!.name, electionAddressString)
+            view.layoutIfNeeded()
         }
     }
 

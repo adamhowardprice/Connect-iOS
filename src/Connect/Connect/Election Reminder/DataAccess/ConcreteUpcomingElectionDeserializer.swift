@@ -10,6 +10,7 @@ class ConcreteUpcomingElectionDeserializer: UpcomingElectionDeserializer {
         let address = jsonDictionary["poll_address"] as? String
         let zip = jsonDictionary["poll_zip"] as? String
         let precinctCode = jsonDictionary["poll_precinctCode"] as? String
+        let name = jsonDictionary["poll_name"] as? String
         let isPrimary = jsonDictionary["poll_is_primary"] as? Bool
 
         return UpcomingElection(
@@ -20,6 +21,7 @@ class ConcreteUpcomingElectionDeserializer: UpcomingElectionDeserializer {
             zip: zip!,
             precinctCode: precinctCode!,
             isPrimary: isPrimary!,
+            name: name!,
             startTime: NSDate(),
             endTime: NSDate())
     }
